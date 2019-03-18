@@ -4,58 +4,102 @@
   <artifactId>diamond</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  
-  <properties>
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.8.RELEASE</version>
+	</parent>
+  	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<lombok.version>1.18.4</lombok.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Dalston.SR1</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>1.5.9.RELEASE</version>
-				<type>pom</type>
-				<scope>import</scope>
+		        <groupId>org.springframework.boot</groupId>
+		        <artifactId>spring-boot-starter-test</artifactId>
+		        <scope>test</scope>
+		    </dependency>
+			<!-- lombok 提供java bean 的Getter、Setter、log 等方法 -->
+			<dependency>
+			    <groupId>org.projectlombok</groupId>
+			    <artifactId>lombok</artifactId>
+			    <scope>provided</scope>
 			</dependency>
+			<!-- jackson默认返回json数据，jackson-dataformat-xml 提供返回xml功能，只需将请求头修改Accept:text/xml即可 -->
+			 <dependency>
+	            <groupId>com.fasterxml.jackson.dataformat</groupId>
+	            <artifactId>jackson-dataformat-xml</artifactId>
+	        </dependency>
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
-				<version>5.0.4</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+			<dependency>
+			    <groupId>org.mybatis.spring.boot</groupId>
+			    <artifactId>mybatis-spring-boot-starter</artifactId>
+			    <version>1.3.2</version>
+			</dependency>
+			<!-- pagehelper：mybatis 分页插件 -->
+			<dependency>
+			    <groupId>com.github.pagehelper</groupId>
+			    <artifactId>pagehelper-spring-boot-starter</artifactId>
+			    <version>1.2.5</version>
+			</dependency>
+		
+			<dependency>
+			    <groupId>com.baomidou</groupId>
+			    <artifactId>mybatis-plus-boot-starter</artifactId>
+			    <version>3.0.6</version>
+			    <exclusions>
+			    	<exclusion>
+			    		<groupId>org.mybatis</groupId>
+			    		<artifactId>mybatis-spring</artifactId>
+			    	</exclusion>
+			    	<exclusion>
+			    		<groupId>org.mybatis</groupId>
+			    		<artifactId>mybatis</artifactId>
+			    	</exclusion>
+					<exclusion>
+						<groupId>com.github.jsqlparser</groupId>
+						<artifactId>jsqlparser</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+			    </exclusions>
+			</dependency>
+		
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
-				<version>1.0.31</version>
+				<version>1.1.10</version>
 			</dependency>
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>1.3.0</version>
-			</dependency>
+			
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-core</artifactId>
 				<version>1.2.3</version>
 			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
-			</dependency>
+			
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
