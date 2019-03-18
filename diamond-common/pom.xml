@@ -6,4 +6,16 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>diamond-common</artifactId>
+  <groupId>com.diamond</groupId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+  	<!-- lombok 提供java bean 的Getter、Setter、log 等方法 -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <scope>provided</scope>
+		    <version>1.16.22</version>
+		</dependency>
+  </dependencies>
 </project>
