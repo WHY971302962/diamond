@@ -22,8 +22,7 @@ public class UserServiceImpl extends BaseServiceImpl<User>{
 	
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={ServiceException.class})
 	public Integer create(User user) {
-		String errMsg = "code:%s,errMsg:%s";
-	    checkNotNull(user.getNike(),"nike 不能为空");
+	    checkNotNull(user.getNike(),ERR_MSG_TEMPLATE,"","");
 		return userMapper.create(user);
 	}
 	

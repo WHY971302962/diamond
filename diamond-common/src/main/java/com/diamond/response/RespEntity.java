@@ -14,7 +14,7 @@ import lombok.Setter;
 public class RespEntity {
 	
 	//状态码
-    private Long code;
+    private String code;
     //状态码对应提示信息
     private String msg;
     //返回数据
