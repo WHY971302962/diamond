@@ -14,7 +14,7 @@ import lombok.Setter;
 public class RespEntity {
 	
 	//状态码
-    private int code;
+    private Long code;
     //状态码对应提示信息
     private String msg;
     //返回数据
@@ -27,6 +27,11 @@ public class RespEntity {
         this.msg = respCode.getMsg();
     }
 
+    public RespEntity(Long code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+    
     public RespEntity(RespCode respCode, Object data) {
         this(respCode);
         this.data = data;

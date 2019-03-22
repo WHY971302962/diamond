@@ -5,14 +5,14 @@ import lombok.Getter;
 @Getter
 public enum  RespCode {
 	
-	SUCCESS(200, "请求成功"),//200-OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。
-	CREATE(201,"创建成功"),//201-CREATED -[POST/PUT/PATCH]：用户新建或修改数据成功。
-	UPDATE(201,"更新成功"),//201-CREATED -[POST/PUT/PATCH]：用户新建或修改数据成功。
-	DELETE(204,"删除成功"),//204-NO CONTENT - [DELETE]：用户删除数据成功。 
+	SUCCESS("200", "请求成功"),//200-OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。
+	CREATE("201","创建成功"),//201-CREATED -[POST/PUT/PATCH]：用户新建或修改数据成功。
+	UPDATE("201","更新成功"),//201-CREATED -[POST/PUT/PATCH]：用户新建或修改数据成功。
+	DELETE("204","删除成功"),//204-NO CONTENT - [DELETE]：用户删除数据成功。 
 	
 	
-	WARN(0, "网络异常，请稍后重试"),
-	FAILED(-1,"请求失败");
+	WARN("0", "网络异常，请稍后重试"),
+	FAILED("-1","请求失败");
 	
 	/**
 	 * 状态码： 	
@@ -29,10 +29,11 @@ public enum  RespCode {
 	 *  503-Service Unavailable
 	 *  504-网关超时
 	 */
-    private int code;
+    private String code;
     private String msg;
 
-    RespCode(int code, String msg) {
+    RespCode(String code, String msg) {
+    	this.code = code;
         this.msg = msg;
     }
     

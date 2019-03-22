@@ -20,6 +20,8 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 		// TODO Auto-generated method stub
+		if(value==null)
+			return true;
 		return pattern.matcher(value).matches();
 	}
 

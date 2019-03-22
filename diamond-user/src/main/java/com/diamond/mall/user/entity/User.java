@@ -22,9 +22,10 @@ public class User extends BaseEntity{
 	private String username;
 	private String password;
 	private String phone;
+	//@NotNull
 	private String nike;
 	private String headimg;
 	private Integer distributorId;
-	private String userNo;
+	//private String userNo;
 	
 }

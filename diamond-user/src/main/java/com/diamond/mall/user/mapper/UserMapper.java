@@ -14,8 +14,10 @@ import com.diamond.mall.user.entity.User;
 public interface UserMapper extends BaseMapper<User>{
 
 	
-	@Insert("insert into user(email,username,password,phone,nike,headimg,distributor_id,user_no) "
-			+"values (#{email},#{username},#{password},#{phone},#{nike},#{headimg},#{distributorId},#{userNo})")
+	/*@Insert("insert into user(email,username,password,phone,nike,headimg,distributor_id,user_no) "
+			+"values (#{email},#{username},#{password},#{phone},#{nike},#{headimg},#{distributorId},#{userNo})")*/
+	@Insert("insert into user(email,username,nike) "
+			+"values (#{email},#{username},#{nike})")
 	@Options(useGeneratedKeys=true,keyColumn="id",keyProperty="id")
 	public Integer create(User user);
 	

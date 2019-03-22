@@ -25,7 +25,8 @@ import org.springframework.context.annotation.ImportResource;
  * 8.sql 新增、修改 填充公共字段信息
  * 9.接口幂等性设计：新增（先获取时间戳，并将时间戳存入redis缓存10分钟，业务执行时，清除redis时间戳缓存，避免重复提交）
  * 				更新（同上，更新数据时同时加入时间戳为更新条件，防止多用户多服务并发修改，时间戳由mybatis提供的interceptor修改）
- * 
+ * 10.swagger2
+ * 11.generator 自动生成实体类
  * 
  * 规范：
  * 	1.javaBean继承 BaseEntity

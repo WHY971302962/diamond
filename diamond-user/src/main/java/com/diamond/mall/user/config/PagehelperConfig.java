@@ -30,6 +30,10 @@ public class PagehelperConfig {
     }
     
 /*    @Bean
+    public MybatisUpdateOrInsertSqlInterceptor mybatisUpdateOrInsertSqlInterceptor(){
+    	return new MybatisUpdateOrInsertSqlInterceptor();
+    }*/
+/*    @Bean
     public MybatisplusMetaObjectHandler mybatisplusMetaObjectHandler() {
     	MybatisplusMetaObjectHandler handler = new MybatisplusMetaObjectHandler();
     	return handler;

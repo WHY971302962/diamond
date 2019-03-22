@@ -103,7 +103,23 @@
 		    <version>${log4j.version}</version>
 		    <scope>compile</scope>
 		</dependency>
-
+		
+		<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+		</dependency>
+			
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>25.1-jre</version>
+		</dependency>
+		<dependency>
+		     <groupId>org.springframework.boot</groupId>
+		     <artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>		
+		
 		<dependency>
 			<groupId>com.diamond</groupId>
 			<artifactId>diamond-common</artifactId>

@@ -1,9 +1,12 @@
 package com.diamond.mall.user.controller;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,9 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.diamond.mall.user.controller.model.User;
+import com.diamond.mall.user.controller.dto.UserDTO;
+import com.diamond.mall.user.entity.User;
 import com.diamond.mall.user.mapper.UserMapper;
-import com.diamond.mall.user.service.user.UserService;
+import com.diamond.mall.user.service.user.UserServiceImpl;
 import com.diamond.response.RespCode;
 import com.diamond.response.RespEntity;
 import com.github.pagehelper.PageHelper;
@@ -94,7 +98,7 @@ public class UserController {
 	public UserMapper userMapper;
 	
 	@Autowired
-	public UserService userService;
+	public UserServiceImpl userService;
 	
 	@GetMapping("/user")
 	@ResponseBody
@@ -110,24 +114,27 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("/user/{id}")
+	@GetMapping("/user/{id}")
 	@ResponseBody
 	public RespEntity getUser(@PathVariable("id")Long id) {
-		log.info(UserController.class.getName());
-		return new RespEntity(RespCode.SUCCESS,new User(id,"name","pwd","1308866","addr"));
+		User user = userService.findById(id);
+		UserDTO dto = new UserDTO();
+		BeanUtils.copyProperties(user, dto);
+		return new RespEntity(RespCode.SUCCESS,dto);
 	}
 	
 	@DeleteMapping("/user/{id}")
 	@ResponseBody
 	public RespEntity deleteUser(@PathVariable("id")Long id) {
 		log.info(UserController.class.getName());
-		return new RespEntity(RespCode.DELETE,new User(id,"name","pwd","1308866","addr"));
+		return new RespEntity(RespCode.DELETE);
 	}
 	
 	@PostMapping("/user")
 	@ResponseBody
 	public RespEntity createUser(@RequestBody  com.diamond.mall.user.entity.User user) {
-		userService.insert(user);//.create(user);
+		//userService.insert(user);//.create(user);
+		userService.create(user);
 		//userMapper.create(user);
 		/*try {
 			
@@ -141,13 +148,9 @@ public class UserController {
 	
 	@PutMapping("/user")
 	@ResponseBody
-	public RespEntity updateUser(@RequestBody @Valid User user) {
-		try {
-			if(user.getAddr()==null)
-				throw new RuntimeException();
-		}catch(Exception e) {
-			return new RespEntity(RespCode.FAILED);
-		}
+	public RespEntity updateUser(@RequestBody @Valid UserDTO user) {
+		checkNotNull(user.getId(),"数据主键不能为空");
+		
 		return new RespEntity(RespCode.UPDATE,user);
 	}
 	
@@ -158,7 +161,7 @@ public class UserController {
 
 	@PostMapping("/responseentity")
 	@ResponseBody
-	public ResponseEntity<User> create(@RequestBody @Valid User user) {
+	public ResponseEntity<UserDTO> create(@RequestBody @Valid UserDTO user) {
 		log.info(user.toString());
 		//return new RespEntity(RespCode.WARN,user);
 		ResponseEntity.status(503);
