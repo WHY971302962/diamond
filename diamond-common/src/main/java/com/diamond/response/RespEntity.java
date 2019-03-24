@@ -27,7 +27,7 @@ public class RespEntity {
         this.msg = respCode.getMsg();
     }
 
-    public RespEntity(Long code, String msg) {
+    public RespEntity(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }

@@ -19,6 +19,9 @@ import com.diamond.response.RespEntity;
 
 /**
  * Controller 异常统一处理
+ *  
+ *  ExceptionHandlerExceptionResolver.getExceptionHandlerMethod
+ * 	获取相应的自定义异常信息并封装到ServletInvocableHandlerMethod类中,执行invokeAndHandle方法调用自定义异常方法
  * 
  * @author Administrator
  *
@@ -32,7 +35,7 @@ public class ApiExceptionHandlerAdvice {
 		// 校验 除了 requestbody 注解方式的参数校验 对应的 bindingresult 为
 		// BeanPropertyBindingResult
 		FieldError fieldError = ex.getBindingResult().getFieldError();
-		Long code = -10002L;
+		String code = "-10002L";
 		RespEntity res = new RespEntity(code, "" + fieldError.getDefaultMessage());
 		return new ResponseEntity<RespEntity>(res, HttpStatus.valueOf(response.getStatus()));
 	}
@@ -49,7 +52,7 @@ public class ApiExceptionHandlerAdvice {
 	public ResponseEntity<RespEntity> methodArgumentNotValidException(MethodArgumentNotValidException ex,
 			HttpServletResponse response) {
 		FieldError fieldError = ex.getBindingResult().getFieldError();
-		Long code = -10001L;
+		String code = "-10001L";
 		RespEntity re = new RespEntity(code, fieldError.getDefaultMessage());
 		ResponseEntity<RespEntity> responseEntity = new ResponseEntity<>(re, HttpStatus.valueOf(response.getStatus()));
 		return responseEntity;
@@ -66,7 +69,7 @@ public class ApiExceptionHandlerAdvice {
 	@ResponseBody
 	public ResponseEntity<RespEntity> JsonProcessingException(HttpMessageConversionException ex,
 			HttpServletResponse response) {
-		Long code = -1000L;
+		String code = "-1000";
 		RespEntity re = new RespEntity(code, "数据格式有误");
 		ResponseEntity<RespEntity> responseEntity = new ResponseEntity<>(re, HttpStatus.valueOf(response.getStatus()));
 		return responseEntity;
@@ -99,7 +102,7 @@ public class ApiExceptionHandlerAdvice {
 	@ResponseBody
 	public ResponseEntity<RespEntity> exception(Exception exception, HttpServletResponse response) {
 
-		Long code = -15001L;
+		String code = "-15001L";
 		RespEntity re = new RespEntity(code, "未知异常:" + exception.getMessage());
 		ResponseEntity<RespEntity> responseEntity = new ResponseEntity<>(re, HttpStatus.valueOf(response.getStatus()));
 		return responseEntity;

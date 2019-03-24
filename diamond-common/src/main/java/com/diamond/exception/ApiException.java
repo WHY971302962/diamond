@@ -7,11 +7,11 @@ public class ApiException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected Long errorCode;
+	protected String errorCode;
 
 	protected Object data;
 
-	public ApiException(Long errorCode, String message, Object data, Throwable e) {
+	public ApiException(String errorCode, String message, Object data, Throwable e) {
 
 		super(message, e);
 
@@ -21,13 +21,13 @@ public class ApiException extends RuntimeException {
 
 	}
 
-	public ApiException(Long errorCode, String message, Object data) {
+	public ApiException(String errorCode, String message, Object data) {
 
 		this(errorCode, message, data, null);
 
 	}
 
-	public ApiException(Long errorCode, String message) {
+	public ApiException(String errorCode, String message) {
 
 		this(errorCode, message, null, null);
 
@@ -49,13 +49,13 @@ public class ApiException extends RuntimeException {
 
 	}
 
-	public Long getErrorCode() {
+	public String getErrorCode() {
 
 		return errorCode;
 
 	}
 
-	public void setErrorCode(Long errorCode) {
+	public void setErrorCode(String errorCode) {
 
 		this.errorCode = errorCode;
 
